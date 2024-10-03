@@ -11,11 +11,14 @@ RUN apt-get update && apt-get install -y \
 # Enable SSH service and set up a non-root user (optional)
 RUN mkdir /var/run/sshd
 
+COPY reverse_tunnel.sh /root/reverse_tunnel.sh
+RUN chmod +x /root/reverse_tunnel.sh
+
 # Set a password for the root user (for simplicity)
 RUN echo 'root:password' | chpasswd
 
 # Configure SSH to allow root login
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # Expose necessary ports
 EXPOSE 22 80
@@ -26,6 +29,7 @@ EXPOSE 22 80
 #RUN iptables -A INPUT -p tcp -m conntrack --ctstate INVALID,NEW -j REJECT # Reject new and invalid TCP Connections
 
 # Start the SSH server and Apache server
+
 CMD  service ssh start && service apache2 start && tail -f /dev/null
 
 # SSH Tunnel to the dmz

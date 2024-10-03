@@ -13,10 +13,10 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:password' | chpasswd
 
 # Configure SSH to allow root login
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # Expose necessary ports
 EXPOSE 22 80
 
-# Start the SSH server and Apache server
 CMD service ssh start && tail -f /dev/null
+# Start the SSH server and Apache server
