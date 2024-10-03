@@ -1,1 +1,3 @@
-# syt5-gek931-fernwartung-dahmen
+# GK931 Fernwartung "Anwendung und Kryptographie"
+
+Autor: Felix Dahmen

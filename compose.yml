@@ -1,0 +1,14 @@
+services:
+  dmz:
+    build: dmz
+    ports:
+      - 1234:22
+    networks:
+      - internal
+  server:
+    build: server
+    networks:
+      - internal
+    privileged: true
+networks:
+  internal:
